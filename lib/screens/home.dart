@@ -1,4 +1,3 @@
-import 'dart:developer' as dev;
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -18,56 +17,87 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     SizeConfig.init(context);
-    return Stack(
-      children: [
-        // SizedBox(
-        //   width: SizeConfig.width,
-        //   height: SizeConfig.height,
-        //   child: FadeInImage.assetNetwork(
-        //     placeholder: Assets.images[imageNo],
-        //     image: Assets.images[imageNo],
-        //   ),
-        // ),
-        AnimatedSwitcher(
-          duration: const Duration(
-            milliseconds: 400,
+    return Scaffold(
+      body: Stack(
+        children: [
+          // SizedBox(
+          //   width: SizeConfig.width,
+          //   height: SizeConfig.height,
+          //   child: FadeInImage.assetNetwork(
+          //     placeholder: Assets.images[imageNo],
+          //     image: Assets.images[imageNo],
+          //   ),
+          // ),
+          AnimatedSwitcher(
+            duration: const Duration(
+              milliseconds: 400,
+            ),
+            child: Image.asset(
+              Assets.images[imageNo],
+              fit: BoxFit.fill,
+              width: SizeConfig.width,
+              height: SizeConfig.height,
+            ),
           ),
-          child: Image.asset(
-            Assets.images[imageNo],
-            fit: BoxFit.fill,
+          SizedBox(
             width: SizeConfig.width,
             height: SizeConfig.height,
+            child: Row(
+              children: [
+                Expanded(
+                  child: Container(),
+                ),
+                Expanded(
+                  child: getImageButtons(),
+                ),
+              ],
+            ),
           ),
-        ),
-        SizedBox(
-          width: SizeConfig.width,
-          height: SizeConfig.height,
-          child: Row(
-            children: [
-              Expanded(
-                child: Container(),
-              ),
-              Expanded(
-                child: getImageButtons(),
-              ),
-            ],
-          ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
   Widget getImageButtons() {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        ElevatedButton(
-          onPressed: () {
-            setState(() {
-              imageNo = getRandom();
-              dev.log('Image:$imageNo');
-            });
-          },
-          child: Text('Change Image'),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            InkWell(
+              onTap: () {},
+              onHover: (hovering) {
+                if (hovering) {
+                  setState(() {
+                    imageNo = 1;
+                  });
+                } else {
+                  setState(() {
+                    imageNo = 0;
+                  });
+                }
+              },
+              child: Container(
+                width: SizeConfig.height * 0.3,
+                height: SizeConfig.height * 0.2,
+                decoration: BoxDecoration(
+                  image: imageNo != 1
+                      ? DecorationImage(
+                          image: AssetImage(
+                            Assets.image1,
+                          ),
+                          fit: BoxFit.fill,
+                        )
+                      : null,
+                  border: Border.all(
+                    color: Colors.white,
+                    width: 5.0,
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
       ],
     );
