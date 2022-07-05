@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:web_practice/screens/home.dart';
 
 void main() {
   runApp(const WebPractice());
@@ -9,7 +10,7 @@ class WebPractice extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       home: Home(),
     );
   }
