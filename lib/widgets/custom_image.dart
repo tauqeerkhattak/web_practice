@@ -8,11 +8,14 @@ class CustomImage extends StatelessWidget {
   final Function(bool) onHover;
   final int imageNo;
   final Offset center;
+  final double? width;
+
   const CustomImage({
     Key? key,
     required this.onHover,
     required this.imageNo,
     required this.center,
+    this.width,
   }) : super(key: key);
 
   @override
@@ -20,10 +23,12 @@ class CustomImage extends StatelessWidget {
     return CustomPaint(
       painter: PaintService(
         center: center,
+        width: width,
       ),
       child: ClipPath(
         clipper: ClipService(
           center: center,
+          width: width,
         ),
         child: InkWell(
           onTap: () {},

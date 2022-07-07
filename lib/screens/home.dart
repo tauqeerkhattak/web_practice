@@ -19,18 +19,26 @@ class _HomeState extends State<Home> {
     return Scaffold(
       body: Stack(
         children: [
-          SizedBox(
-            width: SizeConfig.width,
-            height: SizeConfig.height,
+          //Main Background
+          AnimatedSwitcher(
+            duration: const Duration(milliseconds: 300),
             child: imageNo >= 0
                 ? Image.asset(
                     Assets.images[imageNo],
                     fit: BoxFit.fill,
+                    width: SizeConfig.width,
+                    height: SizeConfig.height,
                   )
-                : const ColoredBox(
-                    color: Colors.amber,
+                : SizedBox(
+                    width: SizeConfig.width,
+                    height: SizeConfig.height,
+                    child: const ColoredBox(
+                      color: Colors.amber,
+                    ),
                   ),
           ),
+
+          //Image0
           CustomImage(
             onHover: (hovering) {
               if (hovering) {
@@ -45,10 +53,12 @@ class _HomeState extends State<Home> {
             },
             imageNo: 0,
             center: Offset(
-              SizeConfig.width * 0.85,
+              SizeConfig.width * 0.65,
               SizeConfig.height * 0.2,
             ),
           ),
+
+          //Image1
           CustomImage(
             onHover: (hovering) {
               if (hovering) {
@@ -63,8 +73,69 @@ class _HomeState extends State<Home> {
             },
             imageNo: 1,
             center: Offset(
-              SizeConfig.width * 0.65,
+              SizeConfig.width * 0.85,
               SizeConfig.height * 0.2,
+            ),
+          ),
+
+          //Image2
+          CustomImage(
+            onHover: (hovering) {
+              if (hovering) {
+                setState(() {
+                  imageNo = 2;
+                });
+              } else {
+                setState(() {
+                  imageNo = -1;
+                });
+              }
+            },
+            imageNo: 2,
+            width: SizeConfig.width * 0.2 + 250,
+            center: Offset(
+              SizeConfig.width * 0.75,
+              SizeConfig.height * 0.5,
+            ),
+          ),
+
+          //Image3
+          CustomImage(
+            onHover: (hovering) {
+              if (hovering) {
+                setState(() {
+                  imageNo = 3;
+                });
+              } else {
+                setState(() {
+                  imageNo = -1;
+                });
+              }
+            },
+            imageNo: 3,
+            center: Offset(
+              SizeConfig.width * 0.65,
+              SizeConfig.height * 0.8,
+            ),
+          ),
+
+          //Image4
+          CustomImage(
+            onHover: (hovering) {
+              if (hovering) {
+                setState(() {
+                  imageNo = 4;
+                });
+              } else {
+                setState(() {
+                  imageNo = -1;
+                });
+              }
+            },
+            imageNo: 4,
+            center: Offset(
+              SizeConfig.width * 0.85,
+              SizeConfig.height * 0.8,
             ),
           ),
         ],

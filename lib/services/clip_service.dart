@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 
 class ClipService extends CustomClipper<Path> {
   final Offset center;
+  final double? width;
 
   ClipService({
     required this.center,
+    this.width,
   });
 
   @override
@@ -13,7 +15,7 @@ class ClipService extends CustomClipper<Path> {
     path.addRect(
       Rect.fromCenter(
         center: center,
-        width: 250,
+        width: width ?? 250,
         height: 150,
       ),
     );
